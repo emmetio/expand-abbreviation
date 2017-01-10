@@ -1,0 +1,47 @@
+{
+  "name": "@emmetio/expand-abbreviation",
+  "version": "0.0.1",
+  "description": "Reference implementation of Emmet abbreviation expander",
+  "main": "dist/expand.cjs.js",
+  "jsnext:main": "dist/expand.es.js",
+  "dependencies": {
+    "@emmetio/abbreviation": "^0.4.6",
+    "@emmetio/html-snippets-resolver": "^0.1.0",
+    "@emmetio/html-transform": "^0.2.0",
+    "@emmetio/markup-formatters": "^0.2.1",
+    "@emmetio/output-profile": "^0.1.4",
+    "@emmetio/snippets": "^0.1.0",
+    "@emmetio/snippets-registry": "^0.1.1",
+    "@emmetio/variable-resolver": "^0.1.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-register": "^6.18.0",
+    "mocha": "^3.2.0",
+    "rollup": "^0.41.1",
+    "rollup-plugin-node-resolve": "^2.0.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "build": "npm run build:cjs && npm run build:es && npm run build:es:full",
+    "build:cjs": "rollup -c -o dist/expand.cjs.js -f cjs ./index.js",
+    "build:es": "rollup -c -o dist/expand.es.js -f es ./index.js",
+    "build:es:full": "rollup -c ./rollup-full.config.js -o dist/expand-full.es.js ./index.js",
+    "prepublish": "npm run test && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmetio/expand-abbreviation.git"
+  },
+  "keywords": [
+    "emmet",
+    "abbreviation",
+    "expand"
+  ],
+  "author": "Sergey Chikuyonok <serge.che@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emmetio/expand-abbreviation/issues"
+  },
+  "homepage": "https://github.com/emmetio/expand-abbreviation#readme"
+}
