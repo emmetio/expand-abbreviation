@@ -1,8 +1,8 @@
 'use strict';
 
-import parse from '@emmetio/abbreviation';
+import parseAbbreviation from '@emmetio/abbreviation';
 import snippets from '@emmetio/snippets';
-import createRegistry from '@emmetio/snippets-registry';
+import SnippetsRegistry from '@emmetio/snippets-registry';
 import resolveSnippets from '@emmetio/html-snippets-resolver';
 import Profile from '@emmetio/output-profile';
 import transform from '@emmetio/html-transform';
@@ -21,7 +21,7 @@ const defaultOptions = {
      * fields: ${0} or ${1:item}. So for TextMate-style fields this function
      * will look like this:
      * @example
-     * (index, placeholder) => `\${${index}{placeholder ? ':' + placeholder : ''}}`
+     * (index, placeholder) => `\${${index}${placeholder ? ':' + placeholder : ''}}`
      *
      * @param  {Number} index         Placeholder index. Fields with the same indices
      * should be linked
@@ -31,18 +31,12 @@ const defaultOptions = {
     field: (index, placeholder) => placeholder || '',
 
     /**
-     * Predefined snippets registry
-     * @type {SnippetsRegistry}
-     */
-    registry: null,
-
-    /**
      * Insert given text string(s) into expanded abbreviation
      * If array of strings is given, the implicitly repeated element (e.g. `li*`)
      * will be repeated by the amount of items in array
      * @type {String|String[]}
      */
-    insertText: null,
+    text: null,
 
     /**
      * Either predefined output profile or options for output profile. Used for
@@ -65,7 +59,7 @@ const defaultOptions = {
      * May also contain array of items: either snippets (Object) or references
      * to default syntax snippets (String; the key in default snippets hash)
      * @see @emmetio/snippets
-     * @type {Object}
+     * @type {Object|SnippetsRegistry}
      */
     snippets: {},
 
@@ -98,18 +92,41 @@ const defaultVariables = {
     charset: 'UTF-8'
 };
 
-export default function expand(abbr, options) {
-    options = Object.assign({}, defaultOptions, options);
-    options.variables = Object.assign({}, defaultVariables, options.variables);
+/**
+ * Expands given abbreviation into code
+ * @param  {String|Node} abbr    Abbreviation to parse or already parsed abbreviation
+ * @param  {Object} options
+ * @return {String}
+ */
+export function expand(abbr, options) {
+	options = Object.assign({}, defaultOptions, options);
+	const formatOptions = Object.assign({field: options.field}, options.format);
 
-    const registry = createSnippetsRegistry(options);
+	if (typeof abbr === 'string') {
+		abbr = parse(abbr, options);
+	}
 
-    const tree = parse(abbr)
-    .use(transform, options.insertText, options.addons)
-    .use(resolveSnippets, registry)
-    .use(resolveVariables, options.variables);
+    return format(abbr, createProfile(options), options.syntax, formatOptions);
+}
 
-    return format(tree, createProfile(options), options.syntax, options.format);
+/**
+ * Parses given Emmet abbreviation into a final abbreviation tree with all
+ * required transformations applied
+ * @param {String|Node} Abbreviation to parse or already parsed abbreviation
+ * @param  {Object} options
+ * @return {Node}
+ */
+export function parse(abbr, options) {
+	options = Object.assign({}, defaultOptions, options);
+
+	if (typeof abbr === 'string') {
+		abbr = parseAbbreviation(abbr);
+	}
+
+    return abbr
+    .use(transform, options.text, options.addons)
+    .use(resolveSnippets, createSnippetsRegistry(options))
+    .use(resolveVariables, Object.assign({}, defaultVariables, options.variables));
 }
 
 /**
@@ -118,8 +135,8 @@ export default function expand(abbr, options) {
  * @return {SnippetsRegistry}
  */
 function createSnippetsRegistry(options) {
-    if (options.registry) {
-        return options.registry;
+    if (options.snippets instanceof SnippetsRegistry) {
+        return options.snippets;
     }
 
     const registrySnippets = [snippets[options.syntax]];
@@ -134,7 +151,7 @@ function createSnippetsRegistry(options) {
         registrySnippets.push(options.snippets);
     }
 
-    return createRegistry(registrySnippets.filter(Boolean));
+    return new SnippetsRegistry(registrySnippets.filter(Boolean));
 }
 
 /**

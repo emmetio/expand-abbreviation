@@ -7,11 +7,11 @@
   "dependencies": {
     "@emmetio/abbreviation": "^0.4.6",
     "@emmetio/html-snippets-resolver": "^0.1.0",
-    "@emmetio/html-transform": "^0.2.0",
+    "@emmetio/html-transform": "^0.2.1",
     "@emmetio/markup-formatters": "^0.2.1",
     "@emmetio/output-profile": "^0.1.4",
     "@emmetio/snippets": "^0.1.0",
-    "@emmetio/snippets-registry": "^0.1.1",
+    "@emmetio/snippets-registry": "^0.2.0",
     "@emmetio/variable-resolver": "^0.1.1"
   },
   "devDependencies": {
