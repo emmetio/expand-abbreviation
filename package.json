@@ -26,7 +26,7 @@
     "build": "npm run build:cjs && npm run build:es && npm run build:es:full",
     "build:cjs": "rollup -c -o dist/expand.cjs.js -f cjs ./index.js",
     "build:es": "rollup -c -o dist/expand.es.js -f es ./index.js",
-    "build:es:full": "rollup -c ./rollup-full.config.js -o dist/expand-full.es.js ./index.js",
+    "build:es:full": "BUNDLE=full rollup -c -o dist/expand-full.es.js ./index.js",
     "prepublish": "npm run test && npm run build"
   },
   "repository": {

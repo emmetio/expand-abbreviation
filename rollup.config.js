@@ -1,7 +1,18 @@
-export default {
+'use strict';
+
+import nodeResolve from 'rollup-plugin-node-resolve';
+
+const options = {
     entry: './index.js',
     format: 'es',
-    external: [
+    plugins: []
+};
+
+if (process.env.BUNDLE === 'full') {
+    // build a full bundle, without dependencies
+    options.plugins.push(nodeResolve({jsnext: true}));
+} else {
+    options.external = [
         '@emmetio/abbreviation',
         '@emmetio/snippets',
         '@emmetio/snippets-registry',
@@ -10,5 +21,7 @@ export default {
         '@emmetio/html-transform',
         '@emmetio/variable-resolver',
         '@emmetio/markup-formatters'
-    ]
-};
+    ];
+}
+
+export default options;
