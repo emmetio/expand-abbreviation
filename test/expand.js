@@ -2,7 +2,7 @@
 
 const assert = require('assert');
 require('babel-register');
-const expand = require('../html').expand;
+const expand = require('../index').expand;
 
 describe('HTML expand', () => {
     it('basic', () => {

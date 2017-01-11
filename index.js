@@ -1,9 +1,13 @@
 'use strict';
 
-import { expand } from './html';
+import { expand as htmlExpand, parse as htmlParse } from './lib/html';
 
 // XXX will add CSS support later
 
-export default function(abbr, options) {
-    return expand(abbr, options);
+export function expand(abbr, options) {
+    return htmlExpand(abbr, options);
+}
+
+export function parse(abbr, options) {
+    return htmlParse(abbr, options);
 }
