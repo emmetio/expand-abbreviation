@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "Reference implementation of Emmet abbreviation expander",
   "main": "dist/expand.cjs.js",
-  "jsnext:main": "dist/expand.es.js",
+  "module": "dist/expand.es.js",
   "dependencies": {
     "@emmetio/abbreviation": "^0.5.0",
     "@emmetio/html-snippets-resolver": "^0.1.1",
@@ -23,10 +23,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "build": "npm run build:cjs && npm run build:es && npm run build:es:full",
-    "build:cjs": "rollup -c -o dist/expand.cjs.js -f cjs ./index.js",
-    "build:es": "rollup -c -o dist/expand.es.js -f es ./index.js",
-    "build:es:full": "BUNDLE=full rollup -c -o dist/expand-full.es.js ./index.js",
+    "build": "rollup -c && npm run build:full",
+    "build:full": "rollup -c --environment BUILD_FULL",
     "prepublish": "npm run test && npm run build"
   },
   "repository": {

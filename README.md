@@ -91,4 +91,4 @@ The standard abbreviation expanding workflow:
 
 ## Build targets
 
-`@emmetio/expand-abbreviation` NPM module is available in two flavors: CommonJS and ES6 modules. There’s also a complete, zero-dependency ES6 module suitable for browsers (see `dist/expand-full.es.js`).
+`@emmetio/expand-abbreviation` NPM module is available in two flavors: CommonJS and ES6 modules. There’s also a complete, zero-dependency UMD module suitable for browsers (see `dist/expand-full.js`).
