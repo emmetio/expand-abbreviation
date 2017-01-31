@@ -13,6 +13,8 @@ describe('CSS expand', () => {
 		assert.equal(expand('fl-l'), 'float: left;');
 		assert.equal(expand('fl-r'), 'float: right;');
 		assert.equal(expand('@k'), '@keyframes identifier {\n\t\n}');
+		assert.equal(expand('fll'), 'float: left;');
+		assert.equal(expand('ovh'), 'overflow: hidden;');
 
 		// insert TextMate-style fields/tabstops in output
 		const field = (index, placeholder) => `\${${index}${placeholder ? ':' + placeholder : ''}}`;
