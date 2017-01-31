@@ -17,6 +17,10 @@ if (process.env.BUILD_FULL) {
 	Object.assign(options, {
 		external: [
 		    '@emmetio/abbreviation',
+			'@emmetio/css-abbreviation',
+			'@emmetio/css-snippets-resolver',
+			'@emmetio/stylesheet-formatters',
+			'@emmetio/lorem',
 		    '@emmetio/snippets',
 		    '@emmetio/snippets-registry',
 		    '@emmetio/html-snippets-resolver',
