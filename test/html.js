@@ -5,7 +5,7 @@ require('babel-register');
 const expand = require('../index').expand;
 
 describe('HTML expand', () => {
-    it('basic', () => {
+	it('basic', () => {
 		assert.equal(expand('ul>.item$*2'), '<ul>\n\t<li class="item1"></li>\n\t<li class="item2"></li>\n</ul>');
 
 		// insert text into abbreviation
@@ -14,7 +14,7 @@ describe('HTML expand', () => {
 		// insert TextMate-style fields/tabstops in output
 		const field = (index, placeholder) => `\${${index}${placeholder ? ':' + placeholder : ''}}`;
 		assert.equal(expand('ul>.item$*2', {field}), '<ul>\n\t<li class="item1">${1}</li>\n\t<li class="item2">${2}</li>\n</ul>');
-    });
+	});
 
 	it('syntax', () => {
 		assert.equal(expand('ul>.item$*2', {syntax: 'html'}), '<ul>\n\t<li class="item1"></li>\n\t<li class="item2"></li>\n</ul>');
@@ -22,33 +22,33 @@ describe('HTML expand', () => {
 		assert.equal(expand('xsl:variable[name=a select=b]>div', {addons: {xsl: true}}), '<xsl:variable name="a">\n\t<div></div>\n</xsl:variable>');
 	});
 
-    it('custom profile', () => {
-        const profile = {selfClosingStyle: 'xhtml'};
+	it('custom profile', () => {
+		const profile = {selfClosingStyle: 'xhtml'};
 
-        assert.equal(expand('img'), '<img src="" alt="">');
-        assert.equal(expand('img', {profile}), '<img src="" alt="" />');
-    });
+		assert.equal(expand('img'), '<img src="" alt="">');
+		assert.equal(expand('img', {profile}), '<img src="" alt="" />');
+	});
 
-    it('custom variables', () => {
-        const variables = {charset: 'ru-RU'};
+	it('custom variables', () => {
+		const variables = {charset: 'ru-RU'};
 
-        assert.equal(expand('[charset=${charset}]{${charset}}'), '<div charset="UTF-8">UTF-8</div>');
-        assert.equal(expand('[charset=${charset}]{${charset}}', {variables}), '<div charset="ru-RU">ru-RU</div>');
-    });
+		assert.equal(expand('[charset=${charset}]{${charset}}'), '<div charset="UTF-8">UTF-8</div>');
+		assert.equal(expand('[charset=${charset}]{${charset}}', {variables}), '<div charset="ru-RU">ru-RU</div>');
+	});
 
-    it('custom snippets', () => {
-        const snippets = {link: 'link[foo=bar href]/'};
+	it('custom snippets', () => {
+		const snippets = {link: 'link[foo=bar href]/'};
 
-        // `link:css` depends on `link` snippet so changing it will result in
-        // altered `link:css` result
-        assert.equal(expand('link:css'), '<link rel="stylesheet" href="style.css">');
-        assert.equal(expand('link:css', {snippets}), '<link foo="bar" href="style.css">');
-    });
+		// `link:css` depends on `link` snippet so changing it will result in
+		// altered `link:css` result
+		assert.equal(expand('link:css'), '<link rel="stylesheet" href="style.css">');
+		assert.equal(expand('link:css', {snippets}), '<link foo="bar" href="style.css">');
+	});
 
-    it('formatter options', () => {
+	it('formatter options', () => {
 		const format = {comment: {enabled: true}};
 
 		assert.equal(expand('ul>.item$*2'), '<ul>\n\t<li class="item1"></li>\n\t<li class="item2"></li>\n</ul>');
 		assert.equal(expand('ul>.item$*2', {format}), '<ul>\n\t<li class="item1"></li>\n\t<!-- /.item1 -->\n\t<li class="item2"></li>\n\t<!-- /.item2 -->\n</ul>');
-    });
+	});
 });

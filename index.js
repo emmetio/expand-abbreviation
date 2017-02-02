@@ -6,86 +6,86 @@ import { expand as cssExpand,  parse as cssParse } from './lib/css';
 import createSnippetsRegistry from './lib/snippets-registry';
 
 const defaultOptions = {
-    /**
-     * Abbreviation output syntax
-     * @type {String}
-     */
-    syntax: 'html',
+	/**
+	 * Abbreviation output syntax
+	 * @type {String}
+	 */
+	syntax: 'html',
 
-    /**
-     * Field/tabstop generator for editor. Most editors support TextMate-style
-     * fields: ${0} or ${1:item}. So for TextMate-style fields this function
-     * will look like this:
-     * @example
-     * (index, placeholder) => `\${${index}${placeholder ? ':' + placeholder : ''}}`
-     *
-     * @param  {Number} index         Placeholder index. Fields with the same indices
-     * should be linked
-     * @param  {String} [placeholder] Field placeholder
-     * @return {String}
-     */
-    field: (index, placeholder) => placeholder || '',
+	/**
+	 * Field/tabstop generator for editor. Most editors support TextMate-style
+	 * fields: ${0} or ${1:item}. So for TextMate-style fields this function
+	 * will look like this:
+	 * @example
+	 * (index, placeholder) => `\${${index}${placeholder ? ':' + placeholder : ''}}`
+	 *
+	 * @param  {Number} index         Placeholder index. Fields with the same indices
+	 * should be linked
+	 * @param  {String} [placeholder] Field placeholder
+	 * @return {String}
+	 */
+	field: (index, placeholder) => placeholder || '',
 
-    /**
-     * Insert given text string(s) into expanded abbreviation
-     * If array of strings is given, the implicitly repeated element (e.g. `li*`)
-     * will be repeated by the amount of items in array
-     * @type {String|String[]}
-     */
-    text: null,
+	/**
+	 * Insert given text string(s) into expanded abbreviation
+	 * If array of strings is given, the implicitly repeated element (e.g. `li*`)
+	 * will be repeated by the amount of items in array
+	 * @type {String|String[]}
+	 */
+	text: null,
 
-    /**
-     * Either predefined output profile or options for output profile. Used for
-     * abbreviation output
-     * @type {Profile|Object}
-     */
-    profile: null,
+	/**
+	 * Either predefined output profile or options for output profile. Used for
+	 * abbreviation output
+	 * @type {Profile|Object}
+	 */
+	profile: null,
 
-    /**
-     * Custom variables for variable resolver
-     * @see @emmetio/variable-resolver
-     * @type {Object}
-     */
-    variables: {},
+	/**
+	 * Custom variables for variable resolver
+	 * @see @emmetio/variable-resolver
+	 * @type {Object}
+	 */
+	variables: {},
 
-    /**
-     * Custom predefined snippets for abbreviation. The expanded abbreviation
-     * will try to match given snippets that may contain custom elements,
-     * predefined attributes etc.
-     * May also contain array of items: either snippets (Object) or references
-     * to default syntax snippets (String; the key in default snippets hash)
-     * @see @emmetio/snippets
-     * @type {Object|SnippetsRegistry}
-     */
-    snippets: {},
+	/**
+	 * Custom predefined snippets for abbreviation. The expanded abbreviation
+	 * will try to match given snippets that may contain custom elements,
+	 * predefined attributes etc.
+	 * May also contain array of items: either snippets (Object) or references
+	 * to default syntax snippets (String; the key in default snippets hash)
+	 * @see @emmetio/snippets
+	 * @type {Object|SnippetsRegistry}
+	 */
+	snippets: {},
 
-    /**
-     * Hash of additional transformations that should be applied to expanded
-     * abbreviation, like BEM or JSX. Since these transformations introduce
-     * side-effect, they are disabled by default and should be enabled by
-     * providing a transform name as a key and transform options as value:
-     * @example
-     * {
-     *     bem: {element: '--'},
-     *     jsx: true // no options, just enable transform
-     * }
-     * @see @emmetio/html-transform/lib/addons
-     * @type {Object}
-     */
-    addons: null,
+	/**
+	 * Hash of additional transformations that should be applied to expanded
+	 * abbreviation, like BEM or JSX. Since these transformations introduce
+	 * side-effect, they are disabled by default and should be enabled by
+	 * providing a transform name as a key and transform options as value:
+	 * @example
+	 * {
+	 *     bem: {element: '--'},
+	 *     jsx: true // no options, just enable transform
+	 * }
+	 * @see @emmetio/html-transform/lib/addons
+	 * @type {Object}
+	 */
+	addons: null,
 
-    /**
-     * Additional options for syntax formatter
-     * @see @emmetio/markup-formatters
-     * @type {Object}
-     */
-    format: null
+	/**
+	 * Additional options for syntax formatter
+	 * @see @emmetio/markup-formatters
+	 * @type {Object}
+	 */
+	format: null
 };
 
 const defaultVariables = {
-    lang: 'en',
-    locale: 'en-US',
-    charset: 'UTF-8'
+	lang: 'en',
+	locale: 'en-US',
+	charset: 'UTF-8'
 };
 
 const stylesheetSyntaxes = new Set(['css', 'sass', 'scss', 'less', 'stylus', 'sss']);
@@ -117,7 +117,7 @@ export function expand(abbr, options) {
 export function parse(abbr, options) {
 	options = createOptions(options);
 
-    return isStylesheet(options.syntax)
+	return isStylesheet(options.syntax)
 		? cssParse(abbr, options)
 		: htmlParse(abbr, options);
 }
@@ -151,7 +151,7 @@ function isStylesheet(syntax) {
  * @return {Profile}
  */
 function createProfile(options) {
-    return options.profile instanceof Profile
-        ? options.profile
-        : new Profile(options.profile);
+	return options.profile instanceof Profile
+		? options.profile
+		: new Profile(options.profile);
 }

@@ -16,23 +16,23 @@ if (process.env.BUILD_FULL) {
 } else {
 	Object.assign(options, {
 		external: [
-		    '@emmetio/abbreviation',
+			'@emmetio/abbreviation',
 			'@emmetio/css-abbreviation',
 			'@emmetio/css-snippets-resolver',
 			'@emmetio/stylesheet-formatters',
 			'@emmetio/lorem',
-		    '@emmetio/snippets',
-		    '@emmetio/snippets-registry',
-		    '@emmetio/html-snippets-resolver',
-		    '@emmetio/output-profile',
-		    '@emmetio/html-transform',
-		    '@emmetio/variable-resolver',
-		    '@emmetio/markup-formatters'
+			'@emmetio/snippets',
+			'@emmetio/snippets-registry',
+			'@emmetio/html-snippets-resolver',
+			'@emmetio/output-profile',
+			'@emmetio/html-transform',
+			'@emmetio/variable-resolver',
+			'@emmetio/markup-formatters'
 		],
 		targets: [
 			{format: 'cjs', dest: 'dist/expand.cjs.js'},
 			{format: 'es',  dest: 'dist/expand.es.js'}
-	    ]
+		]
 	});
 }
 
