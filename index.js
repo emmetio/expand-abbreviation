@@ -1,9 +1,27 @@
 'use strict';
 
 import Profile from '@emmetio/output-profile';
+import SnippetsRegistry from '@emmetio/snippets-registry';
 import { expand as htmlExpand, parse as htmlParse } from './lib/html';
 import { expand as cssExpand,  parse as cssParse } from './lib/css';
-import createSnippetsRegistry from './lib/snippets-registry';
+import snippetsRegistryFactory from './lib/snippets-registry';
+
+/**
+ * Default variables used in snippets to insert common values into predefined snippets
+ * @type {Object}
+ */
+const defaultVariables = {
+	lang: 'en',
+	locale: 'en-US',
+	charset: 'UTF-8'
+};
+
+/**
+ * A list of syntaxes that should use Emmet CSS abbreviations:
+ * a variations of default abbreivation that holds values right in abbreviation name
+ * @type {Set}
+ */
+const stylesheetSyntaxes = new Set(['css', 'sass', 'scss', 'less', 'stylus', 'sss']);
 
 const defaultOptions = {
 	/**
@@ -82,14 +100,6 @@ const defaultOptions = {
 	format: null
 };
 
-const defaultVariables = {
-	lang: 'en',
-	locale: 'en-US',
-	charset: 'UTF-8'
-};
-
-const stylesheetSyntaxes = new Set(['css', 'sass', 'scss', 'less', 'stylus', 'sss']);
-
 /**
  * Expands given abbreviation into string, formatted according to provided
  * syntax and options
@@ -122,6 +132,18 @@ export function parse(abbr, options) {
 		: htmlParse(abbr, options);
 }
 
+/**
+ * Creates snippets registry for given syntax and additional `snippets`
+ * @param  {String} syntax   Snippets syntax, used for retreiving predefined snippets
+ * @param  {SnippetsRegistry|Object|Object[]} [snippets] Additional snippets
+ * @return {SnippetsRegistry}
+ */
+export function createSnippetsRegistry(syntax, snippets) {
+	return snippets instanceof SnippetsRegistry
+		? snippets
+		: snippetsRegistryFactory(isStylesheet(syntax) ? 'css' : syntax, snippets);
+}
+
 export function createOptions(options) {
 	if (typeof options === 'string') {
 		options = { syntax: options };
@@ -137,11 +159,14 @@ export function createOptions(options) {
 }
 
 /**
- * Check if given syntax belongs to stylesheet markup
+ * Check if given syntax belongs to stylesheet markup.
+ * Emmet uses different abbreviation flavours: one is a default markup syntax,
+ * used for HTML, Slim, Pug etc, the other one is used for stylesheets and
+ * allows embedded values in abbreviation name
  * @param  {String}  syntax
  * @return {Boolean}
  */
-function isStylesheet(syntax) {
+export function isStylesheet(syntax) {
 	return stylesheetSyntaxes.has(syntax);
 }
 
@@ -150,7 +175,7 @@ function isStylesheet(syntax) {
  * @param  {Object} options
  * @return {Profile}
  */
-function createProfile(options) {
+export function createProfile(options) {
 	return options.profile instanceof Profile
 		? options.profile
 		: new Profile(options.profile);
