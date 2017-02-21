@@ -5,15 +5,15 @@
   "main": "dist/expand.cjs.js",
   "module": "dist/expand.es.js",
   "dependencies": {
-    "@emmetio/abbreviation": "^0.5.0",
+    "@emmetio/abbreviation": "^0.5.1",
     "@emmetio/css-abbreviation": "^0.2.2",
     "@emmetio/css-snippets-resolver": "^0.2.0",
     "@emmetio/html-snippets-resolver": "^0.1.1",
     "@emmetio/html-transform": "^0.3.0",
-    "@emmetio/lorem": "^1.0.0",
+    "@emmetio/lorem": "^1.0.1",
     "@emmetio/markup-formatters": "^0.3.1",
     "@emmetio/output-profile": "^0.1.4",
-    "@emmetio/snippets": "^0.2.0",
+    "@emmetio/snippets": "^0.2.1",
     "@emmetio/snippets-registry": "^0.3.0",
     "@emmetio/stylesheet-formatters": "^0.1.0",
     "@emmetio/variable-resolver": "^0.2.1"
