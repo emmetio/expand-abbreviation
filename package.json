@@ -9,7 +9,7 @@
     "@emmetio/css-abbreviation": "^0.2.2",
     "@emmetio/css-snippets-resolver": "^0.2.0",
     "@emmetio/html-snippets-resolver": "^0.1.1",
-    "@emmetio/html-transform": "^0.3.0",
+    "@emmetio/html-transform": "^0.3.1",
     "@emmetio/lorem": "^1.0.1",
     "@emmetio/markup-formatters": "^0.3.1",
     "@emmetio/output-profile": "^0.1.4",
