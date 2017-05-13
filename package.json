@@ -5,7 +5,7 @@
   "main": "dist/expand.cjs.js",
   "module": "dist/expand.es.js",
   "dependencies": {
-    "@emmetio/abbreviation": "^0.6.0",
+    "@emmetio/abbreviation": "^0.6.1",
     "@emmetio/css-abbreviation": "^0.3.1",
     "@emmetio/css-snippets-resolver": "^0.2.2",
     "@emmetio/html-snippets-resolver": "^0.1.1",
