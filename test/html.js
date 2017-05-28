@@ -37,12 +37,17 @@ describe('HTML expand', () => {
 	});
 
 	it('custom snippets', () => {
-		const snippets = {link: 'link[foo=bar href]/'};
+		const snippets = {
+			link: 'link[foo=bar href]/',
+			'foo': '.foo[bar=baz]'
+		};
+
+		assert.equal(expand('foo', { snippets }), '<div class="foo" bar="baz"></div>');
 
 		// `link:css` depends on `link` snippet so changing it will result in
 		// altered `link:css` result
 		assert.equal(expand('link:css'), '<link rel="stylesheet" href="style.css">');
-		assert.equal(expand('link:css', {snippets}), '<link foo="bar" href="style.css">');
+		assert.equal(expand('link:css', { snippets }), '<link foo="bar" href="style.css">');
 	});
 
 	it('formatter options', () => {
