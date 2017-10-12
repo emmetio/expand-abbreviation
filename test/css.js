@@ -29,4 +29,26 @@ describe('CSS expand', () => {
 	it('chains', () => {
 		assert.equal(expand('p.5+m-a'), 'padding: 0.5em;\nmargin: auto;');
 	});
+
+	it('formatter options', () => {
+		let options = {
+			format: {
+				stylesheet: {
+					between: "::",
+					after: ";;",
+					intUnit: 'pt',
+					floatUnit: 'vh',
+					unitAliases: {
+						e :'em',
+						p: '%',
+						x: 'ex',
+						r: ' / @rem'
+					}
+				}
+			}
+		};
+		assert.equal(expand('p10', options), 'padding::10pt;;');
+		assert.equal(expand('p10.2', options), 'padding::10.2vh;;');
+		assert.equal(expand('p10r', options), 'padding::10 / @rem;;');
+	});
 });
