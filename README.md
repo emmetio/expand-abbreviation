@@ -32,7 +32,7 @@ console.log(expand('ul.nav>.nav-item{Item $}*2', {syntax: 'slim'}));
 
 This module exports two functions: `parse(abbr, options)` and `expand(abbr, options)`.
 
-The `parse(abbr, options)` function [parses abbreviation into tree](https://github.com/emmetio/abbreviation), applies various transformations required for proper output and returns parsed tree. The `expand(abbr, options)` does the same but returns formatted string. In most cases you should use `expand(abbr, options)` only but if you want to update parsed abbreviation somehow, you can `parse()` abbreviation first, update parsed tree and then `expand()` it:
+The `parse(abbr, options)` function [parses abbreviation into tree](https://github.com/emmetio/abbreviation), applies various transformations required for proper output and returns parsed tree. The `expand(abbr, options)` does the same but returns formatted string. In most cases you should use `expand(abbr, options)` only but if you want to analyze or update parsed abbreviation somehow, you can `parse()` abbreviation first, update parsed tree and then `expand()` it:
 
 ```js
 import { parse, expand } from '@emmetio/expand-abbreviation';
@@ -40,7 +40,7 @@ import { parse, expand } from '@emmetio/expand-abbreviation';
 // 1. Parse string abbreviation into tree
 const tree = parse('ul>.item*3');
 
-// 2. Walk on each tree node, update them somehow
+// 2. Walk on each tree node, read or update them somehow
 tree.walk(node => { ... });
 
 // 3. Output result
@@ -73,7 +73,36 @@ const field = (index, placeholder) => `\${${index}${placeholder ? ':' + placehol
 }
 ```
 
-* `format` (object): additional options for output formatter. Currently, [HTML element commenting](https://github.com/emmetio/markup-formatters/blob/master/format/html.js#L33) is the only supported format option.
+* `format` (object): additional options for output formatter:
+	* `markup` (object): options for markup syntaxes like XML, HTML, Pug, Slim etc.:
+		```js
+		// Auto-comment expanded HTML elements with specific attributes, e.g. `p.foo` → `<p class="foo"></p><!-- .foo -->`
+		comment: {
+			// Enable/disable commenting
+			enabled: false,
+
+			// Attributes that should trigger node commenting on specific node, if commenting is enabled
+			trigger: ['id', 'class'],
+
+			// Template strings for placing before opening and/or after closing tags. Content between `[` and `]` will be outputted only if specified attribute name (uppercased; dashes replaced with underscores) is available in element
+			before: '',
+			after: '\n<!-- /[#ID][.CLASS] -->'
+		}
+		```
+	* `stylesheet` (object): options for stylesheet formatters like CSS, SCSS, LESS etc.:
+		```js
+		{
+			// Use short hex notation where possible, e.g. `#000` instead of `#000000`
+			shortHex: true,
+
+			// A string between property name and value
+			between: ': ',
+
+			// A string after property value
+			after: ';'
+		}
+		```
+
 
 See [`test`](/test) folder for usage examples.
 

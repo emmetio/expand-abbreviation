@@ -1,6 +1,7 @@
 'use strict';
 
 import nodeResolve from 'rollup-plugin-node-resolve';
+import buble from 'rollup-plugin-buble';
 
 const options = {
 	entry: './index.js'
@@ -9,7 +10,10 @@ const options = {
 if (process.env.BUILD_FULL) {
 	Object.assign(options, {
 		format: 'umd',
-		plugins: [nodeResolve({jsnext: true})],
+		plugins: [
+			nodeResolve({jsnext: true}),
+			buble()
+		],
 		dest: 'dist/expand-full.js',
 		moduleName: 'emmet'
 	});

@@ -25,6 +25,11 @@ const stylesheetSyntaxes = new Set(['css', 'sass', 'scss', 'less', 'stylus', 'ss
 
 const defaultOptions = {
 	/**
+	 * Type of abbreviation to parse: 'markup' or 'stylesheet'. Default is 'markup'
+	 */
+	type: 'markup',
+
+	/**
 	 * Abbreviation output syntax
 	 * @type {String}
 	 */
@@ -111,7 +116,7 @@ const defaultOptions = {
 export function expand(abbr, options) {
 	options = createOptions(options);
 
-	return isStylesheet(options.syntax)
+	return getType(options.type, options.syntax) === 'stylesheet'
 		? cssExpand(abbr, options)
 		: htmlExpand(abbr, options);
 }
@@ -127,7 +132,7 @@ export function expand(abbr, options) {
 export function parse(abbr, options) {
 	options = createOptions(options);
 
-	return isStylesheet(options.syntax)
+	return getType(options.type, options.syntax) === 'stylesheet'
 		? cssParse(abbr, options)
 		: htmlParse(abbr, options);
 }
@@ -179,4 +184,18 @@ export function createProfile(options) {
 	return options.profile instanceof Profile
 		? options.profile
 		: new Profile(options.profile);
+}
+
+/**
+ * Returns type of abbreviation expander: either 'markup' or 'stylesheet'
+ * @param {String} type
+ * @param {String} [syntax]
+ */
+function getType(type, syntax) {
+	console.log('get type', type, syntax);
+	if (type) {
+		return type === 'stylesheet' ? 'stylesheet' : 'markup';
+	}
+
+	return isStylesheet(syntax) ? 'stylesheet' : 'markup';
 }
