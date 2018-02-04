@@ -56,4 +56,11 @@ describe('HTML expand', () => {
 		assert.equal(expand('ul>.item$*2'), '<ul>\n\t<li class="item1"></li>\n\t<li class="item2"></li>\n</ul>');
 		assert.equal(expand('ul>.item$*2', {format}), '<ul>\n\t<li class="item1"></li>\n\t<!-- /.item1 -->\n\t<li class="item2"></li>\n\t<!-- /.item2 -->\n</ul>');
 	});
+
+	it('lorem ipsum', () => {
+		const reLorem = /^Lorem.+ipsum.+dolor/;
+		assert(reLorem.test(expand('lorem')));
+		assert(reLorem.test(expand('LoRem')));
+		assert(reLorem.test(expand('LORem20')));
+	});
 });

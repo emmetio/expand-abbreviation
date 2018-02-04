@@ -19,17 +19,16 @@
     "@emmetio/variable-resolver": "^0.2.1"
   },
   "devDependencies": {
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
-    "babel-register": "^6.22.0",
-    "mocha": "^3.4.1",
-    "rollup": "^0.41.4",
-    "rollup-plugin-node-resolve": "^2.0.0"
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "mocha": "^5.0.0",
+    "rollup": "^0.55.3",
+    "rollup-plugin-node-resolve": "^3.0.2"
   },
   "scripts": {
     "test": "mocha",
-    "build": "rollup -c && npm run build:full",
-    "build:full": "rollup -c --environment BUILD_FULL",
-    "prepublish": "npm run test && npm run build"
+    "build": "rollup -c",
+    "prepare": "npm run test && npm run build"
   },
   "repository": {
     "type": "git",
