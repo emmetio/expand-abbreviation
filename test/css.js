@@ -1,8 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-require('babel-register');
-const _expand = require('../index').expand;
+const _expand = require('../').expand;
 
 const expand = (abbr, options) => _expand(abbr, Object.assign({syntax: 'css'}, options));
 

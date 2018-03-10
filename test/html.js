@@ -1,8 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-require('babel-register');
-const expand = require('../index').expand;
+const expand = require('../').expand;
 
 describe('HTML expand', () => {
 	it('basic', () => {
