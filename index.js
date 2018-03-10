@@ -19,9 +19,9 @@ const defaultVariables = {
 /**
  * A list of syntaxes that should use Emmet CSS abbreviations:
  * a variations of default abbreviation that holds values right in abbreviation name
- * @type {Set}
+ * @type {Array}
  */
-const stylesheetSyntaxes = new Set(['css', 'sass', 'scss', 'less', 'stylus', 'sss']);
+const stylesheetSyntaxes = ['css', 'sass', 'scss', 'less', 'stylus', 'sss'];
 
 const defaultOptions = {
 	/**
@@ -172,7 +172,7 @@ export function createOptions(options) {
  * @return {Boolean}
  */
 export function isStylesheet(syntax) {
-	return stylesheetSyntaxes.has(syntax);
+	return stylesheetSyntaxes.indexOf(syntax) !== -1;
 }
 
 /**
