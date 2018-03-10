@@ -18,7 +18,7 @@ const defaultVariables = {
 
 /**
  * A list of syntaxes that should use Emmet CSS abbreviations:
- * a variations of default abbreivation that holds values right in abbreviation name
+ * a variations of default abbreviation that holds values right in abbreviation name
  * @type {Set}
  */
 const stylesheetSyntaxes = new Set(['css', 'sass', 'scss', 'less', 'stylus', 'sss']);
@@ -139,7 +139,7 @@ export function parse(abbr, options) {
 
 /**
  * Creates snippets registry for given syntax and additional `snippets`
- * @param  {String} syntax   Snippets syntax, used for retreiving predefined snippets
+ * @param  {String} syntax   Snippets syntax, used for retrieving predefined snippets
  * @param  {SnippetsRegistry|Object|Object[]} [snippets] Additional snippets
  * @return {SnippetsRegistry}
  */
