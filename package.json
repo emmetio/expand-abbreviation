@@ -1,35 +1,34 @@
 {
   "name": "@emmetio/expand-abbreviation",
-  "version": "0.5.8",
+  "version": "0.5.10",
   "description": "Reference implementation of Emmet abbreviation expander",
   "main": "dist/expand.cjs.js",
   "module": "dist/expand.es.js",
   "dependencies": {
-    "@emmetio/abbreviation": "^0.6.1",
-    "@emmetio/css-abbreviation": "^0.3.1",
-    "@emmetio/css-snippets-resolver": "^0.2.6",
+    "@emmetio/abbreviation": "^0.6.5",
+    "@emmetio/css-abbreviation": "^0.3.2",
+    "@emmetio/css-snippets-resolver": "^0.3.0",
     "@emmetio/html-snippets-resolver": "^0.1.4",
-    "@emmetio/html-transform": "^0.3.2",
+    "@emmetio/html-transform": "^0.3.9",
     "@emmetio/lorem": "^1.0.1",
     "@emmetio/markup-formatters": "^0.3.3",
     "@emmetio/output-profile": "^0.1.5",
-    "@emmetio/snippets": "^0.2.3",
+    "@emmetio/snippets": "^0.2.9",
     "@emmetio/snippets-registry": "^0.3.1",
     "@emmetio/stylesheet-formatters": "^0.1.3",
     "@emmetio/variable-resolver": "^0.2.1"
   },
   "devDependencies": {
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
-    "babel-register": "^6.22.0",
-    "mocha": "^3.4.1",
-    "rollup": "^0.41.4",
-    "rollup-plugin-node-resolve": "^2.0.0"
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "mocha": "^5.0.1",
+    "rollup": "^0.56.3",
+    "rollup-plugin-node-resolve": "^3.0.3"
   },
   "scripts": {
     "test": "mocha",
-    "build": "rollup -c && npm run build:full",
-    "build:full": "rollup -c --environment BUILD_FULL",
-    "prepublish": "npm run test && npm run build"
+    "build": "rollup -c",
+    "prepare": "npm run test && npm run build"
   },
   "repository": {
     "type": "git",
