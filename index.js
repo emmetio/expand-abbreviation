@@ -25,9 +25,10 @@ const stylesheetSyntaxes = ['css', 'sass', 'scss', 'less', 'stylus', 'sss'];
 
 const defaultOptions = {
 	/**
-	 * Type of abbreviation to parse: 'markup' or 'stylesheet'. Default is 'markup'
+	 * Type of abbreviation to parse: 'markup' or 'stylesheet'.
+	 * Can be auto-detected from `syntax` property. Default is 'markup'
 	 */
-	type: 'markup',
+	type: null,
 
 	/**
 	 * Abbreviation output syntax
@@ -155,6 +156,10 @@ export function createOptions(options) {
 	}
 
 	options = Object.assign({}, defaultOptions, options);
+	if (!options.type == null && options.syntax) {
+		options.type = isStylesheet(options.syntax) ? 'stylesheet' : 'markup';
+	}
+
 	options.format = Object.assign({field: options.field}, options.format);
 	options.profile = createProfile(options);
 	options.variables = Object.assign({}, defaultVariables, options.variables);
@@ -192,7 +197,6 @@ export function createProfile(options) {
  * @param {String} [syntax]
  */
 function getType(type, syntax) {
-	console.log('get type', type, syntax);
 	if (type) {
 		return type === 'stylesheet' ? 'stylesheet' : 'markup';
 	}

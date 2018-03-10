@@ -7,7 +7,7 @@ const _expand = require('../index').expand;
 const expand = (abbr, options) => _expand(abbr, Object.assign({syntax: 'css'}, options));
 
 describe('CSS expand', () => {
-	it.only('basic', () => {
+	it('basic', () => {
 		assert.equal(expand('p10'), 'padding: 10px;');
 		assert.equal(expand('c'), 'color: #000;');
 		assert.equal(expand('fl-l'), 'float: left;');
@@ -34,8 +34,8 @@ describe('CSS expand', () => {
 		let options = {
 			format: {
 				stylesheet: {
-					between: "::",
-					after: ";;",
+					between: '::',
+					after: ';;',
 					intUnit: 'pt',
 					floatUnit: 'vh',
 					unitAliases: {

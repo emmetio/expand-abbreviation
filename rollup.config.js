@@ -2,15 +2,7 @@
 
 import nodeResolve from 'rollup-plugin-node-resolve';
 
-export default [{
-	input: './index.js',
-	plugins: [nodeResolve({ jsnext: true })],
-	output: {
-		format: 'umd',
-		name: 'emmet',
-		file: 'dist/expand-full.js',
-	}
-}, {
+const config = [{
 	input: './index.js',
 	external: [
 		'@emmetio/abbreviation',
@@ -28,6 +20,20 @@ export default [{
 	],
 	output: [
 		{ format: 'cjs', file: 'dist/expand.cjs.js' },
-		{ format: 'es',  file: 'dist/expand.es.js' }
+		{ format: 'es', file: 'dist/expand.es.js' }
 	]
 }];
+
+if (process.env.NODE_ENV !== 'test') {
+	config.push({
+		input: './index.js',
+		plugins: [nodeResolve({ jsnext: true })],
+		output: {
+			format: 'umd',
+			name: 'emmet',
+			file: 'dist/expand-full.js',
+		}
+	});
+}
+
+export default config;
