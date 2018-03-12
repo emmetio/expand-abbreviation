@@ -18,7 +18,7 @@ describe('HTML expand', () => {
 	it('syntax', () => {
 		assert.equal(expand('ul>.item$*2', {syntax: 'html'}), '<ul>\n\t<li class="item1"></li>\n\t<li class="item2"></li>\n</ul>');
 		assert.equal(expand('ul>.item$*2', {syntax: 'slim'}), 'ul\n\tli.item1\n\tli.item2');
-		assert.equal(expand('xsl:variable[name=a select=b]>div', {addons: {xsl: true}}), '<xsl:variable name="a">\n\t<div></div>\n</xsl:variable>');
+		assert.equal(expand('xsl:variable[name=a select=b]>div', { options: { xsl: true } }), '<xsl:variable name="a">\n\t<div></div>\n</xsl:variable>');
 	});
 
 	it('custom profile', () => {

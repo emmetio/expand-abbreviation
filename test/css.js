@@ -32,17 +32,17 @@ describe('CSS expand', () => {
 	it('formatter options', () => {
 		let options = {
 			format: {
-				stylesheet: {
-					between: '::',
-					after: ';;',
-					intUnit: 'pt',
-					floatUnit: 'vh',
-					unitAliases: {
-						e :'em',
-						p: '%',
-						x: 'ex',
-						r: ' / @rem'
-					}
+				between: '::',
+				after: ';;'
+			},
+			options: {
+				intUnit: 'pt',
+				floatUnit: 'vh',
+				unitAliases: {
+					e: 'em',
+					p: '%',
+					x: 'ex',
+					r: ' / @rem'
 				}
 			}
 		};

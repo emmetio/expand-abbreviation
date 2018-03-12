@@ -156,7 +156,7 @@ export function createOptions(options) {
 	}
 
 	options = Object.assign({}, defaultOptions, options);
-	if (!options.type == null && options.syntax) {
+	if (options.type == null && options.syntax) {
 		options.type = isStylesheet(options.syntax) ? 'stylesheet' : 'markup';
 	}
 
