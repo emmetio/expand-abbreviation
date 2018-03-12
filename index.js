@@ -109,17 +109,17 @@ const defaultOptions = {
 /**
  * Expands given abbreviation into string, formatted according to provided
  * syntax and options
- * @param  {String|Node} abbr        Abbreviation string or parsed abbreviation tree
- * @param  {String|Object} [options] Parsing and formatting options (object) or
+ * @param  {String|Node} abbr       Abbreviation string or parsed abbreviation tree
+ * @param  {String|Object} [config] Parsing and formatting options (object) or
  * abbreviation syntax (string)
  * @return {String}
  */
-export function expand(abbr, options) {
-	options = createOptions(options);
+export function expand(abbr, config) {
+	config = createOptions(config);
 
-	return getType(options.type, options.syntax) === 'stylesheet'
-		? cssExpand(abbr, options)
-		: htmlExpand(abbr, options);
+	return getType(config.type, config.syntax) === 'stylesheet'
+		? cssExpand(abbr, config)
+		: htmlExpand(abbr, config);
 }
 
 /**

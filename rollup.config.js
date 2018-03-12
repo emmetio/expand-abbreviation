@@ -18,19 +18,25 @@ const config = [{
 		'@emmetio/variable-resolver',
 		'@emmetio/markup-formatters'
 	],
-	output: [
-		{ format: 'cjs', file: 'dist/expand.cjs.js' },
-		{ format: 'es', file: 'dist/expand.es.js' }
-	]
+	output: [{
+		format: 'cjs',
+		sourcemap: true,
+		file: 'dist/expand.cjs.js'
+	}, {
+		format: 'es',
+		sourcemap: true,
+		file: 'dist/expand.es.js'
+	}]
 }];
 
 if (process.env.NODE_ENV !== 'test') {
 	config.push({
 		input: './index.js',
-		plugins: [nodeResolve({ jsnext: true })],
+		plugins: [nodeResolve()],
 		output: {
 			format: 'umd',
 			name: 'emmet',
+			sourcemap: true,
 			file: 'dist/expand-full.js',
 		}
 	});
