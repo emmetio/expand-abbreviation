@@ -56,7 +56,7 @@
 				"attributeCase": "upper"
 			},
 			"snippets": {
-				"sw": "div[[ngSwitch]]"
+				"sw": "div[ngSwitch]"
 			}
 		},
 		"sugarss": {
@@ -87,7 +87,14 @@
 						"gd": "baz"
 					}
 				}
-			}
+      },
+      "syntax": {
+        "sugarss": {
+          "format": {
+            "after": ";;"
+          }
+        }
+      }
 		}
 	}
 }

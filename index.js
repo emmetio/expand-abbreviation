@@ -96,7 +96,7 @@ const defaultOptions = {
 	 * @see @emmetio/html-transform/lib/addons
 	 * @type {Object}
 	 */
-	addons: null,
+	options: null,
 
 	/**
 	 * Additional options for syntax formatter
@@ -140,14 +140,22 @@ export function parse(abbr, options) {
 
 /**
  * Creates snippets registry for given syntax and additional `snippets`
+ * @param  {String} type     Abbreviation type, 'markup' or 'stylesheet'
  * @param  {String} syntax   Snippets syntax, used for retrieving predefined snippets
  * @param  {SnippetsRegistry|Object|Object[]} [snippets] Additional snippets
  * @return {SnippetsRegistry}
  */
-export function createSnippetsRegistry(syntax, snippets) {
+export function createSnippetsRegistry(type, syntax, snippets) {
+	// Backward-compatibility with <0.6
+	if (type && type !== 'markup' && type !== 'stylesheet') {
+		snippets = syntax;
+		syntax = type;
+		type = 'markup';
+	}
+
 	return snippets instanceof SnippetsRegistry
 		? snippets
-		: snippetsRegistryFactory(isStylesheet(syntax) ? 'css' : syntax, snippets);
+		: snippetsRegistryFactory(type, syntax, snippets);
 }
 
 export function createOptions(options) {
@@ -163,7 +171,7 @@ export function createOptions(options) {
 	options.format = Object.assign({field: options.field}, options.format);
 	options.profile = createProfile(options);
 	options.variables = Object.assign({}, defaultVariables, options.variables);
-	options.snippets = createSnippetsRegistry(isStylesheet(options.syntax) ? 'css' : options.syntax, options.snippets);
+	options.snippets = createSnippetsRegistry(options.type, options.syntax, options.snippets);
 
 	return options;
 }
