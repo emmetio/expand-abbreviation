@@ -1,100 +1,106 @@
 {
-	"version": 1,
-	"globals": {
-		"markup": {
-			"format": {
-				"comment": {
-					"enabled": true
-				}
-			},
-			"profile": {
-				"tagCase": "upper",
-				"attributeCase": "upper"
-			},
-			"options": {
-				"bem": {
-					"element": "_el",
-					"modifier": "-mod"
-				}
-			},
-			"variables": {
-				"lang": "ru",
-				"foo": "bar"
-			},
-			"snippets": {
-				"a": "a[href title]",
-				"list": "ul>li.item"
-			}
-		},
-		"stylesheet": {
-			"format": {
-				"shortHex": true,
-				"between": ":"
-			},
-			"profile": {
-				"tagCase": "upper",
-				"format": false
-			},
-			"snippets": {
-				"gd": "grid"
-			}
-		}
-	},
-	"syntax": {
-		"angular": {
-			"type": "markup",
-			"format": {
-				"comment": {
-					"enabled": false
-				}
+  "version": 1,
+  "globals": {
+    "markup": {
+      "format": {
+        "comment": {
+          "enabled": true
+        }
+      },
+      "profile": {
+        "tagCase": "upper",
+        "attributeCase": "upper"
+      },
+      "options": {
+        "bem": {
+          "element": "_el",
+          "modifier": "-mod"
+        }
+      },
+      "variables": {
+        "lang": "ru",
+        "foo": "bar"
+      },
+      "snippets": {
+        "a": "a[href title]",
+        "list": "ul>li.item"
+      }
+    },
+    "stylesheet": {
+      "format": {
+        "shortHex": true,
+        "between": ":"
+      },
+      "profile": {
+        "tagCase": "upper",
+        "format": false
+      },
+      "snippets": {
+        "gd": "grid"
+      }
+    }
+  },
+  "syntax": {
+    "angular": {
+      "type": "markup",
+      "format": {
+        "comment": {
+          "enabled": false
+        }
       },
       "options": {
         "jsx": true
       },
-			"profile": {
-				"tagCase": "lower",
-				"attributeCase": "upper"
-			},
-			"snippets": {
-				"sw": "div[ngSwitch]"
-			}
-		},
-		"sugarss": {
-			"type": "stylesheet",
-			"format": {
-				"between": " ",
-				"after": ""
-			},
-			"snippets": {
-				"foo": "bar"
-			}
-		}
-	},
-	"project": {
-		"proj1": {
-			"globals": {
-				"markup": {
-					"profile": {
-						"tagCase": "upper",
-						"format": false
-					},
-					"snippets": {
-						"p1s": "div.proj1-snippet"
-					}
-				},
-				"stylesheet": {
-					"snippets": {
-						"gd": "baz"
-					}
-				}
+      "profile": {
+        "tagCase": "lower",
+        "attributeCase": "upper"
+      },
+      "snippets": {
+        "sw": "div[ngSwitch]"
+      }
+    },
+    "sugarss": {
+      "type": "stylesheet",
+      "format": {
+        "between": " ",
+        "after": ""
+      },
+      "snippets": {
+        "foo": "bar"
+      }
+    }
+  },
+  "project": {
+    "proj1": {
+      "globals": {
+        "markup": {
+          "profile": {
+            "tagCase": "upper",
+            "format": false
+          },
+          "snippets": {
+            "p1s": "div.proj1-snippet"
+          }
+        },
+        "stylesheet": {
+          "snippets": {
+            "gd": "baz"
+          }
+        }
       },
       "syntax": {
         "sugarss": {
           "format": {
             "after": ";;"
+          },
+          "options": {
+            "intUnit": "cm",
+            "unitAliases": {
+              "a": "bbbb"
+            }
           }
         }
       }
-		}
-	}
+    }
+  }
 }

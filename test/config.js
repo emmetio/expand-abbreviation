@@ -141,6 +141,12 @@ describe('Config support', () => {
 				'BAZ ;;BAR ;;',
 				'Use global & syntax snippets, override with project'
 			);
+
+			assert.equal(
+				expand('p10+m5a', conf),
+				'PADDING 10cm;;MARGIN 5bbbb;;',
+				'Override options with project'
+			);
 		});
 	});
 });
