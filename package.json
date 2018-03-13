@@ -19,7 +19,7 @@
     "@emmetio/variable-resolver": "^0.2.1"
   },
   "devDependencies": {
-    "@emmetio/config": "^0.2.0",
+    "@emmetio/config": "^0.3.0",
     "mocha": "^5.0.1",
     "rollup": "^0.56.3",
     "rollup-plugin-node-resolve": "^3.2.0"
