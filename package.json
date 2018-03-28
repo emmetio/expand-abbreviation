@@ -6,8 +6,8 @@
   "module": "dist/expand.es.js",
   "dependencies": {
     "@emmetio/abbreviation": "^0.6.5",
-    "@emmetio/css-abbreviation": "^0.3.2",
-    "@emmetio/css-snippets-resolver": "^0.3.0",
+    "@emmetio/css-abbreviation": "^0.4.0",
+    "@emmetio/css-snippets-resolver": "^0.4.0",
     "@emmetio/html-snippets-resolver": "^0.1.4",
     "@emmetio/html-transform": "^0.3.9",
     "@emmetio/lorem": "^1.0.1",
@@ -15,7 +15,7 @@
     "@emmetio/output-profile": "^0.1.6",
     "@emmetio/snippets": "^0.2.9",
     "@emmetio/snippets-registry": "^0.3.1",
-    "@emmetio/stylesheet-formatters": "^0.2.0",
+    "@emmetio/stylesheet-formatters": "^0.2.1",
     "@emmetio/variable-resolver": "^0.2.1"
   },
   "devDependencies": {

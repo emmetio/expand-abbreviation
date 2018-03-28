@@ -85,7 +85,7 @@ describe('Config support', () => {
 
 			assert.equal(
 				expand('c+bg#fc0', conf),
-				'COLOR:#000;BACKGROUND:#ffcc00;',
+				'COLOR:#000;BACKGROUND:#fc0;',
 				'Use stylesheet format and profile options'
 			);
 
@@ -107,7 +107,7 @@ describe('Config support', () => {
 
 			assert.equal(
 				expand('c+bg#fc0', conf),
-				'COLOR #000BACKGROUND #ffcc00',
+				'COLOR #000BACKGROUND #fc0',
 				'Use stylesheet format and profile options, override with syntax'
 			);
 
@@ -132,7 +132,7 @@ describe('Config support', () => {
 
 			assert.equal(
 				expand('c+bg#fc0', conf),
-				'COLOR #000;;BACKGROUND #ffcc00;;',
+				'COLOR #000;;BACKGROUND #fc0;;',
 				'Use global & syntax format and profile options, override with project'
 			);
 
