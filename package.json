@@ -1,6 +1,6 @@
 {
   "name": "@emmetio/expand-abbreviation",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Reference implementation of Emmet abbreviation expander",
   "main": "dist/expand.cjs.js",
   "module": "dist/expand.es.js",
