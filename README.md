@@ -1,3 +1,9 @@
+# Deprecated
+
+Module implementation is moved to monorepo: https://github.com/emmetio/emmet
+
+---
+
 # [Emmet](http://emmet.io) abbreviation expander
 
 Reference implementation of Emmet’s “Expand Abbreviation” action.
